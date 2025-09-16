@@ -1,0 +1,121 @@
+/* ====== Tokens ====== */
+:root{
+  --bg:#0b0c10; --panel:#111318; --panel-2:#161922; --text:#e9eef3; --muted:#a8b3c7;
+  --brand:#6ee7ff; --accent:#9bffb7; --bad:#ff7a7a; --border:#222838;
+  --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+/* ====== Reset & Base ====== */
+*{ box-sizing:border-box }
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,#0b0c10,#0c0e14 40%,#0b0c10);
+}
+.wrap{ max-width:1150px; margin:0 auto; padding:10px }
+
+/* ====== Header ====== */
+header.app{
+  position:sticky; top:0; z-index:10;
+  backdrop-filter:saturate(140%) blur(8px);
+  background:linear-gradient(180deg,rgba(15,17,24,.9),rgba(15,17,24,.6));
+  border-bottom:1px solid var(--border);
+}
+header.app .wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.title{ display:flex; align-items:center; gap:16px; padding:14px 0 }
+.title h1{ font-size:clamp(18px,2vw,22px); margin:0; letter-spacing:.2px }
+.tabs{ display:flex; gap:8px; flex-wrap:wrap }
+.tab-btn{
+  appearance:none; border:1px solid var(--border); background:var(--panel-2);
+  color:var(--text); padding:10px 14px; border-radius:999px; cursor:pointer;
+}
+.tab-btn[aria-selected="true"]{ outline:2px solid var(--brand); }
+
+/* ====== Main layout (centrado) ====== */
+main.wrap.grid{
+  display:block;
+  max-width:860px;
+  margin:24px auto;
+}
+.card{
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  box-shadow:var(--shadow); max-width:860px; margin-inline:auto;
+}
+.card header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 18px; border-bottom:1px solid var(--border);
+}
+.card header h2{ margin:0; font-size:18px }
+.card header .tag{ font-size:12px; color:var(--muted) }
+.card .body{ padding:18px }
+
+/* ====== Form A ====== */
+form.good{ display:grid; gap:14px }
+.field{ display:grid; gap:6px; min-width:0 } /* min-width evita overflow en columnas */
+label{ font-size:14px }
+input[type="text"], input[type="email"], input[type="password"]{
+  width:100%; padding:12px 12px; border-radius:12px;
+  border:1px solid var(--border); background:#0e1118; color:var(--text);
+}
+
+/* Fila de contraseñas: 1 col por defecto.
+   Pasa a 2 columnas SOLO si hay ancho mínimo para cada una. */
+.row{
+  display:grid;
+  gap:14px;
+  grid-template-columns: 1fr;         /* móvil */
+  align-items:start;
+}
+@media (min-width: 900px){
+  .row{
+    /* cada columna necesita al menos 260px; si no hay, se mantiene 1 col */
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+}
+
+/* Evita que el contenido empuje el ancho del grid */
+.row .field{ min-width:0; }
+
+.help{ font-size:12px; color:var(--muted) }
+
+.progress{
+  height:10px; background:#0f1220; border:1px solid var(--border);
+  border-radius:999px; overflow:hidden;
+}
+.bar{ height:100%; width:0%; background:linear-gradient(90deg,var(--brand),var(--accent)); transition:width .25s ease }
+
+.actions{ display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+.btn{
+  padding:12px 16px; border-radius:12px; border:1px solid var(--border);
+  background:#121623; color:var(--text); cursor:pointer;
+}
+.btn.primary{ background:linear-gradient(90deg,#3ad2ff,#6cffb3); color:#051018; font-weight:700 }
+
+.chips{ display:flex; flex-wrap:wrap; gap:8px }
+.chip{
+  padding:6px 10px; border:1px dashed #2a3244; color:#bcd;
+  border-radius:999px; font-size:12px; background:#0d111a;
+}
+
+.explain{ font-size:13px; color:var(--muted); background:#0e1320; border:1px solid var(--border); padding:12px; border-radius:12px }
+
+/* ====== Form B (a propósito “malo”) ====== */
+form.bad{ display:grid; gap:10px }
+.bad input, .bad select{
+  padding:8px; border-radius:6px; border:1px solid #4a4a4a; background:#0d0d0d; color:#ccc; width:100%;
+}
+.bad .label-inline{ display:flex; gap:6px; align-items:center }
+.bad .group{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px }
+.warning{ color:var(--bad); font-size:12px }
+.disclaimer{ font-size:12px; color:#999 }
+.fake-progress{
+  height:10px; background:repeating-linear-gradient(90deg,#2a2a2a 0 12px,#1a1a1a 12px 24px);
+  border-radius:999px; border:1px solid #333;
+}
+code.k{
+  background:#0c1220; padding:2px 6px; border-radius:6px; border:1px solid var(--border);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}

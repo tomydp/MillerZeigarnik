@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miller + Zeigarnik</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="app">
+    <div class="wrap">
+      <div class="title" role="banner">
+        <h1>Miller + Zeigarnik — Registro de Usuario</h1>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Cambiar vista">
+        <button class="tab-btn" role="tab" aria-selected="true" data-target="#A">Ver A</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-target="#B">Ver B</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <section id="A" class="card" role="region" aria-labelledby="titleA">
+      <header>
+        <h2 id="titleA">Versión A — Clara, usable y accesible</h2>
+        <span class="tag">Ley de Miller + Efecto Zeigarnik</span>
+      </header>
+      <div class="body">
+        <form id="goodForm" class="good" novalidate>
+          <div class="field">
+            <label for="name">Nombre y apellido</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Ej. Juan Pérez" required />
+            <p id="nameHelp" class="help">Tu nombre tal como figurará en la cuenta.</p>
+          </div>
+
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="tucorreo@dominio.com" required />
+            <p class="help">Usaremos este correo para verificar tu cuenta.</p>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="pass">Contraseña</label>
+              <input id="pass" name="pass" type="password" aria-describedby="pwHelp" required />
+              <p id="pwHelp" class="help">Mínimo 8 caracteres, combina letras y números.</p>
+            </div>
+            <div class="field">
+              <label for="pass2">Confirmar contraseña</label>
+              <input id="pass2" name="pass2" type="password" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>
+              <input id="terms" name="terms" type="checkbox" required />
+              Acepto los términos y condiciones
+            </label>
+          </div>
+
+          <div class="field">
+            <div class="progress" aria-label="Progreso del registro" aria-live="polite"><div class="bar" id="goodBar"></div></div>
+            <p class="help"><strong id="goodPct">0%</strong> completado · <span id="goodHint">Completá los campos para terminar</span></p>
+            <div class="chips" aria-hidden="true">
+              <span class="chip">Campos: 5</span>
+              <span class="chip">Agrupados en 4 bloques</span>
+              <span class="chip">Memoria de trabajo aliviada</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="button" id="saveDraft">Guardar progreso</button>
+            <button class="btn primary" type="submit">Crear cuenta</button>
+          </div>
+        </form>
+
+        <div class="explain" style="margin-top:14px">
+          <strong>Explicación (3–4 frases):</strong>
+          <p>Aplicamos la <em>Ley de Miller</em> limitando el formulario a 5 campos y <em>fragmentándolos</em> en bloques lógicos (datos, contacto, credenciales, aceptación) para reducir la carga cognitiva. Usamos etiquetas claras y ayudas contextuales para facilitar la comprensión sin exigir retener demasiada información. Incorporamos el <em>Efecto Zeigarnik</em> con una barra de progreso, porcentaje y guardado de borrador para mantener la motivación hasta completar la tarea. La interfaz comunica el estado de avance en tiempo real, favoreciendo la finalización.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="B" class="card" role="region" aria-labelledby="titleB" hidden>
+      <header>
+        <h2 id="titleB">Versión B — Confusa y sobrecargada</h2>
+        <span class="tag">Rompe Miller + Zeigarnik</span>
+      </header>
+      <div class="body">
+        <form id="badForm" class="bad" novalidate>
+          <div class="fake-progress" aria-hidden="true"></div>
+          <p class="disclaimer">*Completa <strong>todos</strong> los campos obligatorios (no indicado cuáles).</p>
+
+          <div class="group">
+            <input type="text" placeholder="Nombre" />
+            <input type="text" placeholder="Apellido" />
+            <input type="text" placeholder="Usuario" />
+            <input type="email" placeholder="Email" />
+            <input type="tel" placeholder="Teléfono" />
+            <input type="text" placeholder="Dirección" />
+            <input type="text" placeholder="Provincia" />
+            <input type="text" placeholder="País" />
+            <input type="password" placeholder="Contraseña (1234)" />
+            <input type="password" placeholder="Repetir" />
+            <input type="date" />
+            <select><option disabled selected>Género</option><option>F</option><option>M</option><option>Otro</option></select>
+          </div>
+
+          <div class="label-inline"><input type="checkbox" /> Acepto todo (¿qué?).</div>
+          <div class="label-inline"><input type="checkbox" /> Quiero correos quizás.</div>
+          <p class="warning">Si recargas se pierde todo el formulario.</p>
+
+          <div class="actions">
+            <button class="btn primary" type="submit">Enviar</button>
+            <button class="btn" type="button" id="badReset">Reiniciar (borra todo)</button>
+          </div>
+        </form>
+
+        <div class="explain" style="margin-top:14px">
+          <strong>Explicación:</strong>
+          <p>Se <em>rompe la Ley de Miller</em> al presentar más de 12 campos en un solo bloque sin agrupación ni jerarquía, obligando al usuario a retener demasiada información a la vez. Las etiquetas son vagas o ausentes y no hay ayudas contextuales, aumentando la confusión. Se <em>rompe el Efecto Zeigarnik</em> al carecer de indicadores de avance reales y no conservar el progreso: ante un reinicio o recarga, el usuario pierde todo. Esto genera fricción, sobrecarga y abandono de la tarea.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
