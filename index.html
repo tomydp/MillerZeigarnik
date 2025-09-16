@@ -61,11 +61,6 @@
           <div class="field">
             <div class="progress" aria-label="Progreso del registro" aria-live="polite"><div class="bar" id="goodBar"></div></div>
             <p class="help"><strong id="goodPct">0%</strong> completado · <span id="goodHint">Completá los campos para terminar</span></p>
-            <div class="chips" aria-hidden="true">
-              <span class="chip">Campos: 5</span>
-              <span class="chip">Agrupados en 4 bloques</span>
-              <span class="chip">Memoria de trabajo aliviada</span>
-            </div>
           </div>
 
           <div class="actions">
@@ -75,7 +70,7 @@
         </form>
 
         <div class="explain" style="margin-top:14px">
-          <strong>Explicación (3–4 frases):</strong>
+          <strong>Explicación:</strong>
           <p>Aplicamos la <em>Ley de Miller</em> limitando el formulario a 5 campos y <em>fragmentándolos</em> en bloques lógicos (datos, contacto, credenciales, aceptación) para reducir la carga cognitiva. Usamos etiquetas claras y ayudas contextuales para facilitar la comprensión sin exigir retener demasiada información. Incorporamos el <em>Efecto Zeigarnik</em> con una barra de progreso, porcentaje y guardado de borrador para mantener la motivación hasta completar la tarea. La interfaz comunica el estado de avance en tiempo real, favoreciendo la finalización.</p>
         </div>
       </div>
@@ -88,7 +83,6 @@
       </header>
       <div class="body">
         <form id="badForm" class="bad" novalidate>
-          <div class="fake-progress" aria-hidden="true"></div>
           <p class="disclaimer">*Completa <strong>todos</strong> los campos obligatorios (no indicado cuáles).</p>
 
           <div class="group">
